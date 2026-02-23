@@ -47,7 +47,7 @@ const upload = multer({ storage: storage });
 // Helper function to call Gemini API
 async function generateContentWithGemini(prompt) {
   try {
-    const model = ai.getGenerativeModel({ model: "gemini-3-flash-preview" });
+    const model = ai.getGenerativeModel({ model: "gemini-2.5-flash" });
     const response = await model.generateContent(prompt);
     const text = response.response.text();
     console.log("Gemini API response:", text);
@@ -182,7 +182,7 @@ app.post('/analyze-video', upload.single('videoFile'), async (req, res) => {
     await pollForFileActive(fileApiName);
 
     // 4. Define the prompt and model
-    const model = 'gemini-2.5-pro';
+    const model = 'gemini-2.5-flash';
     const prompt = 'This is an Indian Sign Language video. Decode the sign language and provide the translation in English text.';
 
     // 5. Send the file and prompt to the model
